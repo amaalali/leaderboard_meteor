@@ -6,6 +6,11 @@ if(Meteor.isClient){
       return PlayersList.find();
     }
   });
+  Template.leaderboard.events({
+    'click': function() {
+      console.log("Look a click!");
+    }
+  });
 }
 
 if(Meteor.isServer){
