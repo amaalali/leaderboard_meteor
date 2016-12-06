@@ -37,7 +37,7 @@ if(Meteor.isClient){
     },
     'click .delete': function(){
       var selectedPlayer = Session.get('selectedPlayer');
-      PlayersList.remove({ _id: selectedPlayer });
+      Meteor.call('removePlayer', selectedPlayer);
     },
     'click .clearSelection': function(){
       var playerId = this._id;
@@ -66,12 +66,23 @@ if(Meteor.isServer){
 }
 
 Meteor.methods({
-    'createPlayer': function(playerNameVar, playerScoreVar){
-      var currentUserId = Meteor.userId();
+  'createPlayer': function(playerNameVar, playerScoreVar){
+    check(playerNameVar, String);
+    check(playerScoreVar, Number);
+    var currentUserId = Meteor.userId();
+    if(currentUserId) {
       PlayersList.insert({
         name: playerNameVar,
         score: playerScoreVar,
         createdBy: currentUserId
       });
     }
+  },
+  'removePlayer': function(selectedPlayer){
+    check(selectedPlayer, String);
+    var currentUserId = Meteor.userId();
+    if(currentUserId){
+      PlayersList.remove({ _id: selectedPlayer });
+    }
+  }
 });
