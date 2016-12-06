@@ -5,6 +5,7 @@
 <body>
 	<h1>Science Leaderboard</h1>
 	{{> leaderboard }}
+	{{> addPlayerForm }}
 </body>
 
 <template name="leaderboard">
@@ -20,9 +21,17 @@
 			Selected Player: {{selectedPlayer.name}}
 		</p>
 	{{/if}}
-
 	<p>
 		<button class="increment">Give 5 points</button>
 		<button class="decrement">Remove 5 points</button>
+		<button class="delete">Delete Player</button>
 	</p>
+</template>
+
+<template name="addPlayerForm">
+	<form>
+		<input type="text" name="playerName" placeholder="Scientist" required>
+		<input type="number" name="playerScore" placeholder="Score" required>
+		<input type="submit" value="Submit">
+	</form>
 </template>

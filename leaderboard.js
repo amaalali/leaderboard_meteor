@@ -14,7 +14,7 @@ if(Meteor.isClient){
     },
     'selectedPlayer': function(){
       var selectedPlayer = Session.get('selectedPlayer');
-      return PlayersList.findOne({ _id: selectedPlayer })
+      return PlayersList.findOne({ _id: selectedPlayer });
     }
   });
   Template.leaderboard.events({
@@ -29,6 +29,23 @@ if(Meteor.isClient){
     'click .decrement': function(){
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.update({ _id: selectedPlayer }, { $inc: { score: -5}});
+    },
+    'click .delete': function(){
+      var selectedPlayer = Session.get('selectedPlayer');
+      PlayersList.remove({ _id: selectedPlayer });
+    }
+  });
+  Template.addPlayerForm.events({
+    'submit form': function(event){
+      event.preventDefault();
+      var playerNameVar = event.target.playerName.value;
+        var playerScoreVar = Number(event.target.playerScore.value);
+      PlayersList.insert({
+        name: playerNameVar,
+        score: playerScoreVar
+      });
+      event.target.playerName.value = "";
+      event.target.playerScore.value = "";
     }
   });
 }
