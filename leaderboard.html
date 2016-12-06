@@ -4,8 +4,15 @@
 
 <body>
 	<h1>Science Leaderboard</h1>
-	{{> leaderboard }}
-	{{> addPlayerForm }}
+	<p>
+		{{> loginButtons }}
+	</p>
+	{{#if currentUser }}
+		{{> addPlayerForm }}
+		{{> leaderboard }}
+	{{else}}
+		You must be logged-in.
+	{{/if}}
 </body>
 
 <template name="leaderboard">
@@ -16,17 +23,17 @@
 			</li>
 		{{/each}}
 	</ul>
-	{{#if selectedPlayer}}
-		<p>
-			Selected Player: {{selectedPlayer.name}}
-			<button class="clearSelection">Clear Selection</button>
-		</p>
-	{{/if}}
 	<p>
 		<button class="increment">Give 5 points</button>
 		<button class="decrement">Remove 5 points</button>
 		<button class="delete">Delete Player</button>
 	</p>
+	{{#if selectedPlayer}}
+	<p>
+		Selected Player: {{selectedPlayer.name}}
+		<button class="clearSelection">Clear Selection</button>
+	</p>
+	{{/if}}
 </template>
 
 <template name="addPlayerForm">
