@@ -7,8 +7,8 @@ if(Meteor.isClient){
     }
   });
   Template.leaderboard.events({
-    'click': function() {
-      console.log("Look a click!");
+    'click .player': function() {
+      console.log("You click on a .player!");
     }
   });
 }
