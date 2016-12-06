@@ -10,7 +10,11 @@
 <template name="leaderboard">
 	<ul>
 		{{#each player}}
-			<li class="player">{{name}}: {{score}}</li>
+			<li class="player {{selectedClass}}">{{name}}: {{score}}</li>
 		{{/each}}
+		<li>
+			<button class="increment">Give 5 points</button>
+			<button class="decrement">Remove 5 points</button>
+		</li>
 	</ul>
 </template>
