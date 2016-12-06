@@ -15,7 +15,7 @@ if(Meteor.isClient){
     'selectedPlayer': function(){
       var selectedPlayer = Session.get('selectedPlayer');
       return PlayersList.findOne({ _id: selectedPlayer });
-    }
+    },
   });
   Template.leaderboard.events({
     'click .player': function(){
@@ -33,6 +33,10 @@ if(Meteor.isClient){
     'click .delete': function(){
       var selectedPlayer = Session.get('selectedPlayer');
       PlayersList.remove({ _id: selectedPlayer });
+    },
+    'click .clearSelection': function(){
+      var playerId = this._id;
+      Session.set('selectedPlayer', null);
     }
   });
   Template.addPlayerForm.events({
