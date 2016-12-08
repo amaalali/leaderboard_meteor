@@ -14,7 +14,7 @@ Functionality:
 **Leaderboard screenshot**
 Themed for scientist. Notice any easter eggs? (Hint: Are those score dates?)
 
-![Leaderboard]( "Leaderboard")
+![Leaderboard](https://github.com/amaalali/leaderboard_meteor/blob/master/screenshots/leaderboard.png "Leaderboard")
 
 ## Reference
 
